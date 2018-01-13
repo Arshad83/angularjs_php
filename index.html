@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		ul{
+			border: 1px solid orange;
+		}
+	</style>
+	<script src="angular.js"></script>
+	<script src="app.js"></script>
+</head>
+<body ng-app="funwithcountries">
+	<h1>Fun with countries</h1>
+	<div ng-controller="CountryController as countryCtrl">
+		{{"Hello"+"world"+"!"}}
+		<br/>
+			
+		{{countryCtrl.countries.name}}
+
+		<p>Now countries</p>
+		<ul>
+			<li ng-repeat="country in countryCtrl.countries">
+				<img ng-src="image/{{country.code}}.png">
+				{{country.name}}
+				<ul ng-show="country.states.length > 0">
+					<li ng-repeat="state in country.states">
+						{{state.name}}
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+	</div>
+
+</body>
+</html>
