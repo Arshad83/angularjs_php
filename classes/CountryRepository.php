@@ -2,33 +2,47 @@
 
 require 'Country.php';
 require 'State.php';
-class CountryRepository{
+class CountryRepository {
 
-	private static $countries=array();
+	private static $countries = array();
+	private static $count=array();
 
-	protected static function init(){
-		$countries=array();
+	protected static function init() {
+		$countries = array();
 
-		array_push($countries, 
-			new Country('Australia','at',array(
-				new State('Stria'),new State('Vienna')))
+		array_push($countries,
+			new Country('Australia', 'at', array(
+					new State('Stria'), new State('Vienna')))
 		);
-		array_push($countries, 
-			new Country('Canada','ca',array(
-				new State('Ontario'),new State('Quebec')))
+		array_push($countries,
+			new Country('Canada', 'ca', array(
+					new State('Ontario'), new State('Quebec')))
 		);
-		array_push($countries, 
-			new Country('Luxemburg','lu')
+		array_push($countries,
+			new Country('Luxemburg', 'lu')
 		);
 
-		self::$countries=$countries;
+		self::$countries = $countries;
 	}
-
-	public static function getCountries()
-	{
-		if(count(self::$countries)===0){
+public function another(){
+	$count=array(
+		array('name'=>'austrial','code'=>'au','state'=>array(array('name'=>'stria'),array('name'=>'vienna'))),
+		array('name'=>'brizil','code'=>'br','state'=>array(array('name'=>'sontario'),array('name'=>'Quebec'))),
+		array('name'=>'Luxemburg','code'=>'lu','state'=>array())
+	);
+	self::$count=$count;
+}
+	public static function getCountries() {
+		if (count(self::$countries) === 0) {
 			self::init();
 		}
 		return self::$countries;
+	}
+	public static function getCount()
+	{
+		if (count(self::$count) === 0) {
+			self::another();
+		}
+		return self::$count;	
 	}
 }
